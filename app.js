@@ -95,6 +95,8 @@ document.querySelector('.btn--calculate').addEventListener('click', function() {
     calculateFinancial();
 });
 
+
+// KEYPRESS EVENT
 document.addEventListener('keypress', function(event) {
     if(event.keyCode === 13 || event.which === 13) {
         calculateFinancial();
