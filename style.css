@@ -1,0 +1,119 @@
+/* =================================
+BASIC RESET
+==================================== */
+*,
+*::before,
+*::after {
+    margin:  0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+
+}
+
+/* =================================
+MAIN LAYOUT
+==================================== */
+.container {
+    max-width: 100rem;
+    background-color: #f7f7f7;
+    padding: 4rem;
+    margin: 8rem auto;
+}
+
+.financial {
+
+}
+
+.netpay__heading {
+    font-size: 3rem;
+    text-align: center;
+    color: #545454;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    word-spacing: .2rem;
+}
+
+.netpay__form {
+    width: 30%;
+    margin-left: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.netpay__value {
+    width: 90%;
+    padding: 1rem 5rem;
+    border-radius: 100px;
+    transition: all .4s;
+    border: 1px solid #777;
+    background-color: #fff;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+#btn--calculate {
+    width: 50%;
+    display: inline-block;
+    align-self: center;
+    padding: 1rem 3rem;
+    margin-left: -2.5rem;
+    border-radius: .8rem;
+    border: 1px solid #777;
+    background-color: #add8e6;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    color: #777;
+}
+
+#btn--calculate:focus {
+    outline: none;
+}
+
+.netpay__value:focus {
+    outline: none;
+    width: 100%;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.netpay__container {
+    display: flex;
+    width: 70%;
+    margin-left:15%;
+    flex-direction: column;
+    font-size: 1.5rem;
+    justify-content: start;
+    align-items: center;
+    margin-top: 4rem;
+    background-color: #fff;
+    padding: 2rem;
+}
+
+p {
+    width: 100%;
+    margin-bottom: 2rem;
+    padding: 2rem 3rem;
+    text-align: center;
+    border-top: 1px solid #add8e6;
+}
+
+p:nth-child(odd) {
+    border-bottom: 1px solid #add8e6;
+}
+
+p:nth-child(even) {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #add8e6;
+}
+
+
