@@ -1,6 +1,25 @@
 // PAYROLL CONTROLLER 
 var payrollController = (function() {
 
+    var Employees = function(id, fullname, account, schedule, status) {
+        this.id = id;
+        this.fullname = fullname;
+        this.account = account;
+        this. schedule = schedule;
+        this.status = status;
+    };
+
+    var db = {
+        employeeDetails: [],
+        payrollDetails: []
+    };
+
+    return {
+        AddEmployee : function(empid, mon) {
+            var employeeid = []
+        }
+    }
+
 })();
 
 
