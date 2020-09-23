@@ -3,23 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript | format Number</title>
+    <title>Javascript | Payroll</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="netpay__heading">Calculate Net Pay Income</h1>
-        <div class="netpay__form">
-            <input type="number" class="netpay__value" placeholder="Enter your Income">
-            <button id="btn--calculate">Calculate</button>
+        <h1 class="payroll__heading">Generate your Payroll</h1>
+        <div class="payroll__top">
+            <form class="payroll__form">
+                <div class="payroll__form-group">
+                    <label for="" class="payroll__form-label">Employee ID:</label>
+                    <input type="text" class="payroll__form-employeeid" placeholder="Enter Your Employee ID">
+                </div>
+               <div class="payroll__form-group">
+                   <label for="months">Month:</label>
+                    <select class="payroll__form-months" id="months">
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="November">December</option>
+                    </select>
+               </div>
+                <button id="payroll--submit">Submit</button>
+            </form>
         </div>
-        <div class="netpay__container">
-            <p class="netpay__monthly-income"></p>
-            <p class="netpay__yearly-income"></p>
-            <p class="netpay__health-deduction"></p>
-            <p class=".netpay__pit"></p>
-            <p class=".netpay__yearly-pf"></p>
+        <div class="payroll__bottom">
+            <div class="paryroll__left">
+                <h2 class="payroll__employee-title">Employee Details</h2>
+                <div class="payroll__employee__details">
+                    <div class="payroll__employee-group">
+                        <h3 class="payroll__employee-label">Employee Name:</h3>
+                        <p class="payroll__employee-name">Sonam Tamang</p>
+                    </div>
+                    <div class="payroll__employee-group">
+                        <h3 class="payroll__employee-label">Account:</h3>
+                        <p class="payroll__employee-account">Select Software</p>
+                    </div>
+                    <div class="payroll__employee-group">
+                        <h3 class="payroll__employee-label">Pay Period:</h3>
+                        <p class="payroll__employee-period">September</p>
+                    </div>
+                    <div class="payroll__employee-group">
+                        <h3 class="payroll__employee-label">Work Schedule:</h3>
+                        <p class="payroll__employee-schedule">6:00 - 14:00</p>
+                    </div>
+                    <div class="payroll__employee-group">
+                        <h3 class="payroll__employee-label">Employee Status:</h3>
+                        <p class="payroll__employee-status">Full Time</p>
+                    </div>
+                </div>
+            </div>
+            <div class="payroll__right">
+                <h2 class="payroll__title">Payroll Details</h2>
+                <div class="payroll__details">
+                    <div class="payroll__group">
+                        <h3 class="payroll__label">Monthly Base Salary:</h3>
+                        <p class="payroll__salary">Nu. 23,000.00</p>
+                    </div>
+                    <div class="payroll__group">
+                        <h3 class="payroll__label">EBP:</h3>
+                        <p class="payroll__bonus">Nu.9,423.50</p>
+                    </div>
+                    <div class="payroll__group">
+                        <h3 class="payroll__label">Travel Subsidy:</h3>
+                        <p class="payroll__travel">Nu. 1000.00</p>
+                    </div>
+                    <div class="payroll__employee-group">
+                        <h3 class="payroll__label">Provident Fund:</h3>
+                        <p class="payroll__provident">Nu. 677.50</p>
+                    </div>
+                    <div class="payroll__group">
+                        <h3 class="payroll__label">Tax Deducted:</h3>
+                        <p class="payroll__tax">Nu. 0.00</p>
+                    </div>
+                    <div class="payroll__group">
+                        <h3 class="payroll__label">Health Contribution:</h3>
+                        <p class="payroll__health">Nu. 239.74</p>
+                    </div>
+                    <div class="payroll__group">
+                        <h3 class="payroll__label">Employer Increment:</h3>
+                        <p class="payroll__increment">Nu. 239.74</p>
+                    </div>
+                    <div class="payroll__group">
+                        <h3 class="payroll__label">Net Pay:</h3>
+                        <p class="payroll__netpay">Nu. 239.74</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="payroll__adjustment">
+            <h2 class="payroll__adjustment-title">Payroll Comment</h2>
+            <input type="text" class="payroll__adjustment-comment" placeholder="Enter your comment">
+            <button id="payroll--comment">Send</button>
         </div>
     </div>
    
