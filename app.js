@@ -7,7 +7,6 @@ submit.addEventListener('click', function() {
 
     ourRequest.onload = function() {
         var ourData = JSON.parse(ourRequest.responseText);
-        //getEmployee(ourData);
         console.log(ourData);
     };
     ourRequest.send();
