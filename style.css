@@ -58,26 +58,28 @@ body {
     margin-right: .5rem;   
 }
 
-.payroll__form-employeeid {
+.payroll__form-employeename {
     display: inline-block;
     padding: .8rem 2rem;
     border-radius: .5rem;
     border: 1px solid #add8e6;
 }
 
-.payroll__form-employeeid:focus {
+.payroll__form-employeename:focus {
     outline: none;
     box-shadow: 0 .5rem .8rem rgba(0, 0, 0, 0.2);
 }
 
-.payroll__form-months {
+.payroll__form-status,
+.payroll__form-absent {
     display: inline-block;
     padding: .8rem .5rem;
     border-radius: .5rem;
     border: 1px solid #add8e6;
 }
 
-.payroll__form-months:focus {
+.payroll__form-status:focus,
+.payroll__form-absent:focus {
     outline: none;
 }
 
