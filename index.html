@@ -13,21 +13,22 @@
         <div class="payroll__top">
             <form class="payroll__form">
                 <div class="payroll__form-group">
-                    <label for="" class="payroll__form-label">Employee Name:</label>
-                    <input type="text" class="payroll__form-employeename" placeholder="Enter your employee name">
+                    <label for="employeename" class="payroll__form-label">Employee Name:</label>
+                    <input type="text" class="payroll__form-employeename" id="employeename" placeholder="Enter your employee name">
                 </div>
                 <div class="payroll__form-group">
-                    <label for="months">Employee Status:</label>
-                     <select class="payroll__form-status" id="months">
+                    <label for="employeestatus">Employee Status:</label>
+                     <select class="payroll__form-status" id="employeestatus">
+                         <option value="free-lancer">Select</option>
                          <option value="free-lancer">Free Lancer</option>
                          <option value="contractor">Contractor</option>
-                         <option value="select-software">Select Software</option>
+                         <option value="select-software">IOT Billing</option>
                          <option value="optima">Optima</option>
                      </select>
                 </div>
                <div class="payroll__form-group">
-                   <label for="months">Employee Absent:</label>
-                   <input type="text" class="payroll__form-absent" placeholder="Total number absent">
+                   <label for="employeeabsent">Employee Absent:</label>
+                   <input type="text" class="payroll__form-absent" id="emplloyeeabsent" placeholder="Total number absent">
                </div>
                 <button id="payroll--submit">Submit</button>
             </form>

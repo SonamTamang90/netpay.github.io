@@ -1,4 +1,8 @@
 var DOMstrings = {
     inputEmployeeName: '.payroll__form-employeename',
-    inputEmployee: '.'
-}
+    inputEmployeeStatus: '.payroll__form-status',
+    inputEmployeeAbsent: '.payroll__form-absent',
+    buttonSubmit: 'payroll--submit'
+};
+
+
