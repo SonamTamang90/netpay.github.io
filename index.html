@@ -13,24 +13,26 @@
         <div class="payroll__top">
             <form class="payroll__form">
                 <div class="payroll__form-group">
-                    <label for="employeename" class="payroll__form-label">Employee Name:</label>
-                    <input type="text" class="payroll__form-employeename" id="employeename" placeholder="Enter your employee name">
-                </div>
-                <div class="payroll__form-group">
                     <label for="employeestatus">Employee Status:</label>
-                     <select class="payroll__form-status" id="employeestatus">
-                         <option value="free-lancer">Select</option>
-                         <option value="free-lancer">Free Lancer</option>
-                         <option value="contractor">Contractor</option>
-                         <option value="select-software">IOT Billing</option>
+                     <select class="payroll__form-account" id="employeestatus">
+                         <option value="">Select</option>
+                         <!-- <option value="free-lancer">Free Lancer</option>
+                         <option value="contractor">Contractor</option> -->
+                         <option value="select">Select Software</option>
                          <option value="optima">Optima</option>
                      </select>
                 </div>
+                <div class="payroll__form-group">
+                    <label for="employeename" class="payroll__form-label">Employee Name:</label>
+                    <input type="text" class="payroll__form-employeename" id="employeename" placeholder="Enter your employee name">
+                </div>
                <div class="payroll__form-group">
                    <label for="employeeabsent">Employee Absent:</label>
-                   <input type="text" class="payroll__form-absent" id="emplloyeeabsent" placeholder="Total number absent">
+                   <input type="number" class="payroll__form-absent" id="emplloyeeabsent">
                </div>
-                <button id="payroll--submit">Submit</button>
+               <div class="payroll__form-group">
+                    <button id="payroll--submit">Submit</button>
+                </div>
             </form>
         </div>
         <div class="payroll__bottom">
@@ -42,6 +44,10 @@
                         <p class="payroll__employee-name"></p>
                     </div>
                     <div class="payroll__employee-group">
+                        <h3 class="payroll__employee-label">Payroll Date:</h3>
+                        <p class="payroll__employee-date">September 2020</p>
+                    </div>
+                    <div class="payroll__employee-group">
                         <h3 class="payroll__employee-label">Account:</h3>
                         <p class="payroll__employee-account">Select Software</p>
                     </div>
@@ -50,8 +56,8 @@
                         <p class="payroll__employee-period">Morning</p>
                     </div>
                     <div class="payroll__employee-group">
-                        <h3 class="payroll__employee-label">Work Schedule:</h3>
-                        <p class="payroll__employee-schedule">6:00 - 14:00</p>
+                        <h3 class="payroll__employee-label">Total Absent:</h3>
+                        <p class="payroll__employee-schedule">4 Days</p>
                     </div>
                     <div class="payroll__employee-group">
                         <h3 class="payroll__employee-label">Employee Status:</h3>
@@ -85,10 +91,6 @@
                     <div class="payroll__group">
                         <h3 class="payroll__label">Health Contribution:</h3>
                         <p class="payroll__health">Nu. 239.74</p>
-                    </div>
-                    <div class="payroll__group">
-                        <h3 class="payroll__label">Employer Increment:</h3>
-                        <p class="payroll__increment">Nu. 239.74</p>
                     </div>
                     <div class="payroll__group">
                         <h3 class="payroll__label">Net Pay:</h3>

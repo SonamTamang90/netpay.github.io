@@ -50,8 +50,8 @@ body {
     font-size: 1.5rem;
 }
 
-.payroll__form-group:not(:last-child) {
-    margin-right: 3rem;
+.payroll__form-group {
+    margin-right: 2.5rem;
 }
 
 .payroll__form-label {
@@ -70,15 +70,23 @@ body {
     box-shadow: 0 .5rem .8rem rgba(0, 0, 0, 0.2);
 }
 
-.payroll__form-status,
-.payroll__form-absent {
+.payroll__form-account {
     display: inline-block;
     padding: .8rem .5rem;
     border-radius: .5rem;
     border: 1px solid #add8e6;
 }
 
-.payroll__form-status:focus,
+.payroll__form-absent {
+    display: inline-block;
+    border-radius: .5rem;
+    border: 1px solid #add8e6;
+    padding: .8rem .3rem;
+    width: 25%;
+    margin-right: -10rem;
+}
+
+.payroll__form-account:focus,
 .payroll__form-absent:focus {
     outline: none;
 }
@@ -88,10 +96,10 @@ body {
 ================================================= */
 #payroll--submit {
     display: inline-block;
-    padding: 0 3rem;
+    padding: .9rem 3rem;
     background-color: #6bbeda;
     border: none;
-    border-radius: .5rem;
+    border-radius: .5rem;  
     color: #fff;
     text-transform: uppercase;
 }
@@ -158,7 +166,8 @@ p {
 .payroll__employee-Account,
 .payroll__employee-period,
 .payroll__employee-schedule,
-.payroll__employee-status {
+.payroll__employee-status,
+.payroll__employee-date {
     
     align-self: flex-end;
 }
