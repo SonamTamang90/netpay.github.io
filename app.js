@@ -122,21 +122,39 @@ var UIController = (function() {
         },
 
         addNewEmployee: function(empObj) {
-            document.querySelector(DOMstrings.empName).textContent = empObj.name;
-            document.querySelector(DOMstrings.empDate).textContent = empObj.payrollDate;
-            document.querySelector(DOMstrings.empAccount).textContent = empObj.account;
-            document.querySelector(DOMstrings.empAbsent).textContent = empObj.absent + ' ' + 'Days';
-            document.querySelector(DOMstrings.empStatus).textContent = empObj.status;
+            setTimeout(function() {
+                document.querySelector(DOMstrings.empName).textContent = empObj.name;
+
+                setTimeout(function() {
+                    document.querySelector(DOMstrings.empDate).textContent = empObj.payrollDate;
+                }, 2000);
+
+                setTimeout(function() {
+                    document.querySelector(DOMstrings.empAccount).textContent = empObj.account;
+                }, 3000);
+
+                setTimeout(function() {
+                    document.querySelector(DOMstrings.empAbsent).textContent = empObj.absent + ' ' + 'Days';
+                }, 4000);
+
+                setTimeout(function() {
+                    document.querySelector(DOMstrings.empStatus).textContent = empObj.status;
+                }, 5000);
+                   
+            }, 1000);
         },
 
         addNewPayroll: function(payObj) {
-            document.querySelector(DOMstrings.payBase).textContent = 'Nu.' + ' ' + payObj.base;
-            document.querySelector(DOMstrings.payEPB).textContent = 'Nu.' + ' ' + payObj.ebp;
-            document.querySelector(DOMstrings.payTravel).textContent = 'Nu.' + ' ' + payObj.travel;
-            document.querySelector(DOMstrings.payProvident).textContent = 'Nu.' + ' ' + payObj.provident;
-            document.querySelector(DOMstrings.payTax).textContent = 'Nu.' + ' ' + payObj.tax;
-            document.querySelector(DOMstrings.payProvident).textContent = 'Nu.' + ' ' + payObj.provident;
-            document.querySelector(DOMstrings.payHealth).textContent = 'Nu.' + ' ' + payObj.health;
+
+            setTimeout(function(){
+                document.querySelector(DOMstrings.payBase).textContent = 'Nu.' + ' ' + payObj.base;
+                document.querySelector(DOMstrings.payEPB).textContent = 'Nu.' + ' ' + payObj.ebp;
+                document.querySelector(DOMstrings.payTravel).textContent = 'Nu.' + ' ' + payObj.travel;
+                document.querySelector(DOMstrings.payProvident).textContent = 'Nu.' + ' ' + payObj.provident;
+                document.querySelector(DOMstrings.payTax).textContent = 'Nu.' + ' ' + payObj.tax;
+                document.querySelector(DOMstrings.payProvident).textContent = 'Nu.' + ' ' + payObj.provident;
+                document.querySelector(DOMstrings.payHealth).textContent = 'Nu.' + ' ' + payObj.health;
+            }, 6000);
         },
 
         clearInputs: function() {
@@ -194,6 +212,12 @@ var controller = (function(payrollCtrl, UICtrl) {
     var setEventListener = function() {
         document.getElementById(DOM.submitButton).addEventListener('click', function() {
             ctrlAddEmployee();
+        });
+
+        document.addEventListener('keypress', function(e) {
+            if(e.keyCode === 13 || e.which === 13) {
+                ctrlAddEmployee();
+            }
         });
     };
 
