@@ -1,54 +1,78 @@
-// PAYROLL CONTROLLER 
+//PAYROLL CONTROLLER 
 var payrollController = (function() {
 
-    var SelectEmployee = function(id, name, account, schedule, status) {
-        this.id =id;
-        this.name = name;
+    var Select = function(id, account, payrollDate, name, absent, status) {
+        this.id = id;
         this.account = account;
-        this.schedule = schedule;
+        this.payrollDate = payrollDate;
+        this.name = name;
+        this.absent = absent;
         this.status = status;
     };
 
-    var OptimaEmployee = function(id, name, account, schedule, status) {
+    var Optima = function(id, account, payrollDate, name, absent, status) {
         this.id = id;
-        this.name = name;
         this.account = account;
-        this.schedule = schedule;
+        this.payrollDate = payrollDate;
+        this.name = name;
+        this.absent = absent;
         this.status = status;
-    }
+    };
 
-    // Data structures for application
+    var Payroll = function(base, ebp, travel, provident, tax, health) {
+        this.base = base;
+        this.ebp = ebp;
+        this.travel = travel;
+        this.provident = provident;
+        this.tax = tax;
+        this.health = health;
+    };
+
     var data = {
-        employeeDetails: {
+        employees: {
             select: [],
-            optima:[]
+            optima: []
         },
 
-        netpay: {
-            optima: 0,
-            select: 0
+        payrolls: {
+            select: [],
+            optima: []
         }
     };
 
     return {
-        addEmployee: function(empname, empaccount, empabsent) {
-            var ID, newEmployee;
+        addEmployee: function(acc, name, abs) {
+            var ID, newEmp;
 
-            if(data.employeeDetails[empaccount].length > 0) {
-                ID = data.employeeDetails[empaccount][data.employeeDetails[empaccount].length - 1].id + 1;
+            if(data.employees[acc].length > 0) {
+                ID = data.employees[acc][data.employees[acc].length - 1].id + 1;
             }else {
                 ID = 0;
+            }          
+
+            if(acc === 'select') {
+                newEmp = new Select(ID, 'Select Software', 'September 2020', name, abs, 'Full Time');
+            }else if(acc === 'optima') {
+                newEmp = new Optima (ID, 'Optima Management', 'September 2020', name, abs, 'Full Time');
+            }
+        
+            data.employees[acc].push(newEmp);
+            return newEmp;
+        },
+
+        //
+
+        addPayroll: function(acc) {
+
+            if(acc === 'select') {
+                newPayroll = new Payroll(13500, 9500, 1000, 677, 0, 230);
+            }else if(acc === 'optima') {
+                newPayroll = new Payroll(14000, 9700, 1000, 677, 0, 230);
             };
 
-            if(empaccount === 'select') {
-                newEmployee = new SelectEmployee(ID, empname, empaccount, empabsent, 'Full Time');
-            }else if(empaccount === 'optima') {
-                newEmployee = new OptimaEmployee(ID, empname, empaccount, empabsent, 'Full Time');
-            };
-
-            data.employeeDetails[empaccount].push(newEmployee);
-
-            return newEmployee;
+            data.payrolls[acc].push(newPayroll);
+          
+            return newPayroll;
         },
 
         testing: function() {
@@ -61,74 +85,117 @@ var payrollController = (function() {
 
 // UI CONTROLLER
 var UIController = (function() {
+
     var DOMstrings = {
-        inputEmployeeName: '.payroll__form-employeename',
-        inputEmployeeAccount: '.payroll__form-account',
-        inputEmployeeAbsent: '.payroll__form-absent',
-        buttonSubmit: 'payroll--submit',
-    
-        //Employee details
-        employeeName: '.payroll__employee-name',
-        employeeAccount: '.payroll__employee-account',
-        employeePeriod: '.payroll__employee-period',
-        employeeSchedule: '.payroll__employee-schedule',
-        employeeStatus: '.payroll__employee-status',
-    
-        //Payroll details
-        payrollBaseSalary: '.payroll__salary',
-        payrollEBP: '.payroll__bonus',
-        payrollTravel: '.payroll__travel',
-        payrollProvident: '.payroll__provident',
-        payrollTax: '.payroll__tax',
-        payrollHealth: '.payroll__health'
+        inputAccount: '.payroll__form-account',
+        inputName: '.payroll__form-employeename',
+        inputAbsent: '.payroll__form-absent',
+        submitButton: 'payroll--submit',
+
+        //Text Content replace for the Employee Details
+        empName: '.payroll__employee-name',
+        empDate: '.payroll__employee-date',
+        empAccount: '.payroll__employee-account',
+        empAbsent: '.payroll__employee-schedule',
+        empStatus: '.payroll__employee-status',
+
+        // Text Content replace for the Payroll Details
+        payBase: '.payroll__base',
+        payEPB: '.payroll__ebp',
+        payTravel: '.payroll__travel',
+        payProvident: '.payroll__provident',
+        payTax: '.payroll__tax',
+        payHealth: '.payroll__health'
     };
 
     return {
-        //Getting the values from input of user.
-        getInput : function() {
-            return {
-                employee: document.querySelector(DOMstrings.inputEmployeeName).value,
-                account: document.querySelector(DOMstrings.inputEmployeeAccount).value,
-                absent: document.querySelector(DOMstrings.inputEmployeeAbsent).value 
-            };
+        getDOMstrings: function() {
+            return DOMstrings;
         },
 
-        getDOM: function() {
-            return DOMstrings;
+        getInput: function() {
+            return {
+                account: document.querySelector(DOMstrings.inputAccount).value,
+                name: document.querySelector(DOMstrings.inputName).value,
+                absent: document.querySelector(DOMstrings.inputAbsent).value
+            }
+        },
+
+        addNewEmployee: function(empObj) {
+            document.querySelector(DOMstrings.empName).textContent = empObj.name;
+            document.querySelector(DOMstrings.empDate).textContent = empObj.payrollDate;
+            document.querySelector(DOMstrings.empAccount).textContent = empObj.account;
+            document.querySelector(DOMstrings.empAbsent).textContent = empObj.absent + ' ' + 'Days';
+            document.querySelector(DOMstrings.empStatus).textContent = empObj.status;
+        },
+
+        addNewPayroll: function(payObj) {
+            document.querySelector(DOMstrings.payBase).textContent = 'Nu.' + ' ' + payObj.base;
+            document.querySelector(DOMstrings.payEPB).textContent = 'Nu.' + ' ' + payObj.ebp;
+            document.querySelector(DOMstrings.payTravel).textContent = 'Nu.' + ' ' + payObj.travel;
+            document.querySelector(DOMstrings.payProvident).textContent = 'Nu.' + ' ' + payObj.provident;
+            document.querySelector(DOMstrings.payTax).textContent = 'Nu.' + ' ' + payObj.tax;
+            document.querySelector(DOMstrings.payProvident).textContent = 'Nu.' + ' ' + payObj.provident;
+            document.querySelector(DOMstrings.payHealth).textContent = 'Nu.' + ' ' + payObj.health;
+        },
+
+        clearInputs: function() {
+            var inputs = document.querySelectorAll(DOMstrings.inputName + ',' + DOMstrings.inputAbsent);
+
+            var inputsArr = Array.prototype.slice.call(inputs);
+
+            inputsArr.forEach(function(cur) {
+                cur.value = "";
+            });
+
+            inputsArr[0].focus();
         }
     }
+
 })();
 
 
-// GLOBAL APP CONTROLLER 
+// GLOBAL CONTROLLER 
 var controller = (function(payrollCtrl, UICtrl) {
 
-    var ctrlAddItem = function() {
+    var DOM = UICtrl.getDOMstrings();
+
+
+    var updatePayroll = function() {
+        //1. Calculate the payroll
+
+        //2. Add to the data structure
+
+        //3. Update the user interface
+    };
+
+ 
+    var ctrlAddEmployee = function() {
         //1. Get the input values
         var input = UICtrl.getInput();
-        console.log(input);
 
-        //2. Add to the payroll
-        var newEmployee = payrollCtrl.addEmployee(input.employee, input.account, input.absent);
+        //2. Add to the payroll controller 
+        var newEmployee = payrollCtrl.addEmployee(input.account, input.name, input.absent);
+
+        //3. Display in the user interface.
+        UICtrl.addNewEmployee(newEmployee);  
         
+        //4. Clear Inputs fields
+        UICtrl.clearInputs();
+
+        //5. Calculate and Update the payroll
+        var newPayroll = payrollCtrl.addPayroll(input.account);
+
+        //6. Display the Payroll Details
+        UICtrl.addNewPayroll(newPayroll);
 
     };
-
-    var DOM = UICtrl.getDOM();
 
     var setEventListener = function() {
-
-         //1. Click Button
-        document.getElementById(DOM.buttonSubmit).addEventListener('click', ctrlAddItem);
-
-        //2. Enter Keyword
-        document.addEventListener('keypress', function(e) {
-            if(e.keyCode === 13 || e.which === 13) {
-                ctrlAddItem();
-            }
+        document.getElementById(DOM.submitButton).addEventListener('click', function() {
+            ctrlAddEmployee();
         });
     };
-
 
     return {
         init: function() {
@@ -139,20 +206,3 @@ var controller = (function(payrollCtrl, UICtrl) {
 })(payrollController, UIController);
 
 controller.init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
