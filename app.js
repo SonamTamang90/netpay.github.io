@@ -84,7 +84,7 @@ const payrollController = (() => {
             if(abs > 0) {
                 data.totalDeduction = abs * deduct;
             }else {
-                data.totalDeduction = 0 + 'Hurray!';
+                data.totalDeduction = 0;
             };
             return {
                 totalDeduct: data.totalDeduction
@@ -141,7 +141,27 @@ const UIController = (() => {
     };
 
     
-       
+    let formatNumber = (num) => {
+        
+        let int, dec, splitNum;
+
+        num = Math.abs(num);
+
+        num = num.toFixed(2);
+
+        splitNum = num.split('.');
+
+        int = splitNum[0];
+
+        if(int.length > 3) {
+            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+        }
+
+        dec = splitNum[1]
+
+        return int + '.' + dec;
+
+    }
 
     return {
         getDOMstrings: () => {
@@ -169,8 +189,8 @@ const UIController = (() => {
         addNewPayroll: payObj => {
 
             setTimeout(() =>{
-                document.querySelector(DOMstrings.payBase).textContent = 'Nu.' + ' ' + payObj.base;
-                document.querySelector(DOMstrings.payEPB).textContent = 'Nu.' + ' ' + payObj.ebp;
+                document.querySelector(DOMstrings.payBase).textContent = 'Nu.' + ' ' + formatNumber(payObj.base);
+                document.querySelector(DOMstrings.payEPB).textContent = 'Nu.' + ' ' + formatNumber(payObj.ebp);
                 document.querySelector(DOMstrings.payTravel).textContent = 'Nu.' + ' ' + payObj.travel;
                 document.querySelector(DOMstrings.payProvident).textContent = 'Nu.' + ' ' + payObj.provident;
                 document.querySelector(DOMstrings.payTax).textContent = 'Nu.' + ' ' + payObj.tax;
