@@ -68,7 +68,7 @@ const payrollController = (() => {
         addPayroll: acc => {
 
             if(acc === 'select') {
-                newPayroll = new Payroll(13500, 9500, 1000, 677, 0, 230);
+                newPayroll = new Payroll(13550, 9423.50, 1000, 677, 0, 230);
             }else if(acc === 'optima') {
                 newPayroll = new Payroll(14000, 9700, 1000, 677, 0, 230);
             };
@@ -88,6 +88,20 @@ const payrollController = (() => {
             };
             return {
                 totalDeduct: data.totalDeduction
+            }
+        },
+
+        calculateNetPay: (acc, obj) => {
+            let sum = 0;
+            
+            if(acc === 'select') {
+                data.netpay = (obj.base + obj.ebp + obj.travel) - (obj.provident + obj.health);
+            }else if(acc === 'optima') {
+                data.netpay = (obj.base + obj.ebp + obj.travel) - (obj.provident + obj.health) - data.totalDeduction;
+            };
+
+            return {
+                netPay: data.netpay
             }
         },
 
@@ -122,8 +136,12 @@ const UIController = (() => {
         payProvident: '.payroll__provident',
         payTax: '.payroll__tax',
         payHealth: '.payroll__health',
-        payDeduct: '.payroll__deduct'
+        payDeduct: '.payroll__deduct',
+        payNet: '.payroll__netpay'
     };
+
+    
+       
 
     return {
         getDOMstrings: () => {
@@ -168,6 +186,12 @@ const UIController = (() => {
             
         },
 
+        addNetPay: net => {
+            setTimeout(() => {
+                document.querySelector(DOMstrings.payNet).textContent = 'Nu.' + ' ' + net.netPay;
+            }, 3000)  
+        },
+
         clearInputs: () => {
             let inputs = document.querySelectorAll(DOMstrings.inputName + ',' + DOMstrings.inputAbsent);
 
@@ -206,6 +230,8 @@ const controller = ((payrollCtrl, UICtrl) => {
         //2. Add to the payroll controller 
         let newEmployee = payrollCtrl.addEmployee(input.account, input.name, input.absent);
 
+        console.log(newEmployee);
+
         //3. Display in the user interface.
         UICtrl.addNewEmployee(newEmployee);  
         
@@ -215,6 +241,8 @@ const controller = ((payrollCtrl, UICtrl) => {
         //5. Calculate and Update the payroll
         let newPayroll = payrollCtrl.addPayroll(input.account);
 
+        console.log(newPayroll);
+
         //6. Display the Payroll Details
         UICtrl.addNewPayroll(newPayroll);
 
@@ -223,6 +251,14 @@ const controller = ((payrollCtrl, UICtrl) => {
 
         //8. Display deduction in UI
         UICtrl.addDeduction(deduct);
+
+        //9. Calculate Net Pay 
+        var netpay = payrollCtrl.calculateNetPay(input.account, newPayroll);
+        console.log(netpay);
+
+        //10. Display the Net Pay
+        UICtrl.addNetPay(netpay);
+
 
     };
 
